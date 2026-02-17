@@ -98,6 +98,7 @@ Study how representation length varies across rows.
 * Try changing only one property at a time
 * Character length and token length are different
 * Numbers often behave differently than words
+* Use df.to_json(orient='records')
 
 ---
 
@@ -129,7 +130,7 @@ Use at least these prompts:
 
 ## Investigation
 
-Generate multiple outputs from the same prompt under different generation settings.
+Generate multiple outputs from the same prompt under different generation settings. (Beam search vs greedy etc.)
 
 ### Hints
 
