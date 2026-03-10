@@ -257,7 +257,7 @@ Use the same free-tier-friendly Compute Engine choices:
 
 * `e2-micro`
 * region `us-east1` / `us-central1` / `us-west1`
-* Ubuntu 24.04 LTS
+* Ubuntu 24.04 LTS x86/64, amd64 noble
 * 30 GB standard persistent disk. ([Google Cloud Documentation][2])
 
 Assign a network tag like `n8n-admin`. You can use an ephemeral external IP here if you accept that it may change after stop/start. If you want the URL to stay stable, use a static IP and accept current external-IP pricing. ([Google Cloud Documentation][4])
