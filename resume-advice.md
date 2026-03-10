@@ -74,6 +74,8 @@ Content cuts come first. Shrinking margins and font size to cram in weak bullets
 Spacing adjustments are the finishing pass, not the first move. You can keep asking the LLM to reduce spacing incrementally. For reference, I have mine set to: section heading spacing 160/40, bullet spacing 20/20, contact gap 80.
 
 **Note**: Sometimes after this tightening step I'll notice I have enough white space to add more things which I removed previously! 
+
+
 ---
 
 ## The Iteration Loop
