@@ -57,7 +57,7 @@ You will need:
 - A **Google account** (for GCP and Cloud Shell)
 - A **credit card** to enable GCP billing (you won't be charged beyond ~$3–4/month for the static IP if you follow these instructions)
 - A **Neon account** (free — sign up at [neon.tech](https://neon.tech))
-- Your assigned **aidilab.dev subdomain** — this is your last name (your instructor will set it up for you)
+- Your assigned **aidilab.dev subdomain** — this is your last name (your instructor will set it up for you once you finish Step 3)
 - A **safe place to save passwords** (a password manager or secure note — you'll need to save an encryption key)
 - About **30–45 minutes**
 
