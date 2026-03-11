@@ -2,7 +2,7 @@
 
 ## What you're building and why
 
-By the end of this guide, you'll have your own **n8n automation server** running at a public URL like `https://yourlastname.aidilab.dev`. This gives you a platform to:
+By the end of this guide, you'll have your own **n8n automation server** running at a public URL like `https://yourname.aidilab.dev`. This gives you a platform to:
 
 - **Build automation workflows** — connect APIs, move data between services, and automate repetitive tasks using n8n's visual workflow editor
 - **Receive webhooks from third-party services** — Stripe, GitHub, Slack, Google, and hundreds of others can send real-time events to your n8n instance, triggering workflows automatically
@@ -17,7 +17,7 @@ This setup has several moving parts. Here's what each one does and why it's need
 |-----------|-----------|-----------------|
 | **GCP (Google Cloud)** | Cloud provider that hosts your virtual machine | Gives you a server running 24/7 on Google's infrastructure, with a free-tier eligible VM |
 | **Static IP** | A permanent public IP address for your VM | Without it, your IP changes every time the VM restarts, breaking your domain |
-| **DNS (Cloudflare)** | Maps `yourlastname.aidilab.dev` to your VM's IP | So browsers (and webhook senders) can find your server by name instead of IP address |
+| **DNS (Cloudflare)** | Maps `yourname.aidilab.dev` to your VM's IP | So browsers (and webhook senders) can find your server by name instead of IP address |
 | **Traefik** | A reverse proxy that handles HTTPS | Automatically gets and renews your SSL certificate from Let's Encrypt. Third-party services require HTTPS for webhooks |
 | **n8n** | The automation platform itself | Where you build and run workflows — this is the whole point |
 | **Neon Postgres** | A cloud-hosted database | Stores your workflows, credentials, and execution history. Hosted externally because the VM only has 1 GB of RAM |
@@ -27,7 +27,7 @@ This setup has several moving parts. Here's what each one does and why it's need
 ```
 Browser / Webhook sender
         ↓
-   yourlastname.aidilab.dev  (DNS resolves to your static IP)
+   yourname.aidilab.dev  (DNS resolves to your static IP)
         ↓
    Traefik on port 443  (handles HTTPS, forwards to n8n)
         ↓
@@ -57,7 +57,7 @@ You will need:
 - A **Google account** (for GCP and Cloud Shell)
 - A **credit card** to enable GCP billing (you won't be charged beyond ~$3–4/month for the static IP if you follow these instructions)
 - A **Neon account** (free — sign up at [neon.tech](https://neon.tech))
-- Your assigned **aidilab.dev subdomain** — this is your last name (your instructor will set it up for you once you finish Step 3)
+- Your assigned **aidilab.dev subdomain** — this is your name (email me your external IP address along with your name once you've completed Step 3 below)
 - A **safe place to save passwords** (a password manager or secure note — you'll need to save an encryption key)
 - About **30–45 minutes**
 
@@ -117,7 +117,7 @@ PROJECT_ID="your-project-id-here"  # paste YOUR project ID from the output above
 REGION="us-east1"                  # us-east1, us-central1, or us-west1 for free tier
 ZONE="us-east1-b"                  # a zone inside your region
 VM_NAME="n8n-server"               # name for the VM, can be anything
-DOMAIN="yourlastname.aidilab.dev"  # use YOUR last name, e.g. "aasi.aidilab.dev" or "shah.aidilab.dev"
+DOMAIN="yourname.aidilab.dev"  # use YOUR name, e.g. "aasi.aidilab.dev" or "shah.aidilab.dev"
 # ==========================================
 
 gcloud config set project "$PROJECT_ID"
@@ -198,7 +198,7 @@ echo "=========================================="
 echo ""
 echo "NEXT STEP:"
 echo "  Send your instructor this static IP: $STATIC_IP"
-echo "  Your subdomain is your last name (already set in DOMAIN above)."
+echo "  Your subdomain is your name (already set in DOMAIN above)."
 echo "  Your instructor will create the DNS record for you."
 echo "  Your n8n URL will be: https://$DOMAIN"
 ```
@@ -211,18 +211,18 @@ If this fails with a permission error, double-check that `PROJECT_ID` matches ex
 
 > **What is DNS?** DNS (Domain Name System) translates human-readable names like `aasi.aidilab.dev` into IP addresses like `34.26.163.45`. Without DNS, browsers have no way to find your VM — they only understand IP addresses. A DNS "A record" is an entry that says "this domain name points to this IP address."
 
-**What's happening here:** Your instructor owns the domain `aidilab.dev` and will create a subdomain for you using your **last name**. For example, if your last name is Aasi, your n8n URL will be `https://aasi.aidilab.dev`.
+**What's happening here:** Your instructor owns the domain `aidilab.dev` and will create a subdomain for you using your **name**. For example, if your name is Aasi, your n8n URL will be `https://aasi.aidilab.dev`.
 
 **What you need to do:**
 
-1. Send your instructor your **static IP** from Step 3 (the number printed at the end, like `34.26.163.45`)
+1. Send your instructor your **static IP** from Step 3 (the number printed at the end, like `34.26.163.45`) and your **name** this will be in your server name.
 2. Wait for your instructor to confirm your DNS record is created
 
 **Verify it's working:**
 
 ```bash
-# Run this in Cloud Shell — replace with YOUR last name
-nslookup yourlastname.aidilab.dev
+# Run this in Cloud Shell — replace with YOUR name
+nslookup yourname.aidilab.dev
 # Look for "Address:" in the output — it should show your static IP from Step 3.
 # If you see "NXDOMAIN" or "can't find", wait a few minutes and try again.
 # If it still doesn't work after 15 minutes, ask your instructor to double-check.
@@ -316,7 +316,7 @@ set -euo pipefail
 mkdir -p ~/n8n-compose/local-files && cd ~/n8n-compose
 
 # ===== EDIT THESE =====
-N8N_DOMAIN="yourlastname.aidilab.dev"    # same as DOMAIN from Step 3, e.g. "aasi.aidilab.dev"
+N8N_DOMAIN="yourname.aidilab.dev"    # same as DOMAIN from Step 3, e.g. "aasi.aidilab.dev"
 SSL_EMAIL="you@example.com"              # any email you check — Let's Encrypt sends a warning if your HTTPS cert is about to expire (rare, since Traefik auto-renews). Not linked to Neon, Cloudflare, or GCP.
 TZ="America/Toronto"                     # your timezone
 export NEON_URL="paste-your-entire-neon-connection-string-here"
@@ -545,6 +545,35 @@ n8n ships new versions most weeks. Check [docs.n8n.io/release-notes](https://doc
 
 ---
 
+## Managing costs
+
+**Short answer: just leave the VM running.** Here's why:
+
+| Resource | Running | Stopped |
+|----------|---------|---------|
+| VM (e2-micro) | Free | Free |
+| 30 GB disk | Free | Free (disk still exists) |
+| Static IP | ~$3–4/month | **More expensive** — GCP charges extra for a reserved IP not attached to a running VM |
+
+Stopping the VM doesn't save money — it actually costs more because of the static IP billing. The only real cost is the static IP, and that's charged whether the VM is on or off.
+
+**If you want to go to true zero cost** (e.g. over a long break where you won't use n8n at all):
+
+1. Delete the static IP:
+   ```bash
+   gcloud compute addresses delete n8n-ip --region=us-east1
+   ```
+2. Stop the VM:
+   ```bash
+   gcloud compute instances stop n8n-server --zone=us-east1-b
+   ```
+
+**To bring it back later**, you'd need to: reserve a new static IP (you'll get a different one), start the VM, attach the new IP, update the DNS record in Cloudflare to the new IP, wait for DNS to propagate, and let Traefik get a new certificate. That's a lot of steps to save $3–4/month.
+
+**Recommendation:** For a semester-long class, leave everything running and accept the static IP cost. Set up that $5/month budget alert from Step 1 and don't worry about it.
+
+---
+
 ## Troubleshooting
 
 **"PERMISSION_DENIED" in Cloud Shell** — Your `PROJECT_ID` doesn't match your actual GCP project, or billing isn't linked. Check the project dropdown in the console.
@@ -559,7 +588,7 @@ Replace `your-project-id-here`, `your-vm-name`, and `your-zone` with the values 
 
 **n8n keeps restarting** — Run `sudo docker compose logs n8n --tail=100`. Usually it's a bad database connection string. Double-check the Neon URL and make sure you used the Direct connection, not pooled.
 
-**Certificate errors in browser** — DNS isn't pointing at the VM yet, or port 443 is blocked. Run `nslookup yourlastname.aidilab.dev` to verify the IP, and check that the firewall rules exist with `gcloud compute firewall-rules list`.
+**Certificate errors in browser** — DNS isn't pointing at the VM yet, or port 443 is blocked. Run `nslookup yourname.aidilab.dev` to verify the IP, and check that the firewall rules exist with `gcloud compute firewall-rules list`.
 
 **Out of memory** — Make sure the swap file is active (`free -h` should show 2 GB swap). If n8n is still getting killed, you can reduce the execution pruning limits in `.env`.
 
