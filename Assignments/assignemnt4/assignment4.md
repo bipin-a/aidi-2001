@@ -236,19 +236,6 @@ Use this checklist before submitting.
 
 ---
 
-# Grading Rubric
-
-| Category                                                    | Weight |
-| ----------------------------------------------------------- | -----: |
-| MCP setup across required platforms                         |    25% |
-| Live demonstration of required MCPs working                 |    20% |
-| Skills setup and correct use of all required skills         |    25% |
-| GitHub repo workflow, including issues and project evidence |    15% |
-| Final working project demo                                  |    10% |
-| Clarity and completeness of video walkthrough               |     5% |
-
----
-
 # Additional References
 
 ## Skills collections
