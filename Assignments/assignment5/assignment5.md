@@ -119,6 +119,53 @@ You must install and use these 5 skills from Matt Pocock's collection:
 * `tdd`
 * `improve-codebase-architecture`
 
+You are strongly encouraged to use these skills in **Codex** as part of your real workflow for this assignment. The goal is not just to install them, but to use them intentionally while planning, building, testing, and refining your project.
+
+## Helpful links
+
+If you want a practical overview of how these 5 skills are commonly used together, see:
+
+* Matt Pocock, "5 Agent Skills I Use Every Day"  
+  <https://www.aihero.dev/5-agent-skills-i-use-every-day>
+
+## Windows setup for `npx`
+
+If you are using Windows and do not already have `npx`, install **Node.js LTS** first. `npx` comes with `npm`, and `npm` comes with Node.js.
+
+### Option 1: install with `winget`
+
+Open **PowerShell** or **Command Prompt** and run:
+
+```powershell
+winget install OpenJS.NodeJS.LTS
+```
+
+Then close and reopen your terminal and verify:
+
+```powershell
+node -v
+npm -v
+npx -v
+```
+
+### If `npx` is still not found
+
+In most cases, reopening the terminal is enough. If it still does not work, check that the Node.js install directory is on your `PATH`.
+
+Typical Windows path:
+
+```text
+C:\Program Files\nodejs\
+```
+
+After updating `PATH`, open a new terminal and run:
+
+```powershell
+node -v
+npm -v
+npx -v
+```
+
 ## Required workflow order
 
 Use the skills in this order:
